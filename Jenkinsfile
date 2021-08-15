@@ -58,7 +58,7 @@ pipeline {
         }
         stage('Docker image') {
             steps {
-                bat "docker build -t i-${username}-$env.BRANCH_NAME ."
+                bat "docker build -t i-${username}-$env.BRANCH_NAME:$BUILD_NUMBER --no-cache -f Dockerfile ."
                 bat "docker tag i-${username}-$env.BRANCH_NAME ${registry}$env.BRANCH_NAME:$BUILD_NUMBER"
                 bat "docker tag i-${username}-$env.BRANCH_NAME ${registry}$env.BRANCH_NAME:latest"
             }

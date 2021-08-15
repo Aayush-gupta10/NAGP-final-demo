@@ -102,6 +102,7 @@ pipeline {
         }
         stage('Kubernetes Deployment') {
             steps {
+                bat "kubectl apply -f config.yaml --namespace=kubernetes-cluster-${username}"
                 bat "kubectl apply -f deployment.yaml --namespace=kubernetes-cluster-${username}"
             }
         }

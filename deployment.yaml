@@ -17,6 +17,9 @@ spec:
     spec:
       containers:
         - name: dotnet-app-master
+          envFrom:
+            - configMapRef:
+                name: app-settings
           image: aayushgup10/master:latest
           ports:
             - name: http
@@ -29,7 +32,7 @@ metadata:
   name: dotnet-app-master
   namespace: kubernetes-cluster-aayushgupta01
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: dotnet-app-master
   ports:
